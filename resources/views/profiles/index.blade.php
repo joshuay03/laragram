@@ -9,10 +9,10 @@
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{ $user->username }}</h1>
-                <a href="#">Add New Post</a>
+                <a href="/p/create">Add New Post</a>
             </div>
             <div class="d-flex">
-                <div class="pr-5"><strong>123 </strong>posts</div>
+                <div class="pr-5"><strong>{{ $user->posts->count() }} </strong>posts</div>
                 <div class="pr-5"><strong>123k </strong>followers</div>
                 <div class="pr-5"><strong>123 </strong>following</div>
             </div>
@@ -22,15 +22,13 @@
         </div>
     </div>
     <div class="row pt-4">
-        <div class="col-4">
-            <img src="https://scontent-syd2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c2.0.824.824a/s640x640/143377875_747593889489606_5323934135154740495_n.jpg?_nc_ht=scontent-syd2-1.cdninstagram.com&_nc_cat=106&_nc_ohc=yW5MA7gnqm8AX96HAwD&tp=1&oh=46b37ce18fe3af32cfc4b936d36ccf8c&oe=6043FA04" class="w-100" alt="">
-        </div>
-        <div class="col-4">
-            <img src="https://scontent-syd2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c2.0.823.823a/s640x640/140507228_196917682183052_8114511830349298512_n.jpg?_nc_ht=scontent-syd2-1.cdninstagram.com&_nc_cat=108&_nc_ohc=7rWNiXQCXTUAX8GgOPK&tp=1&oh=357cea2b91d300b6df3fed844d47a0e4&oe=60445611" class="w-100" alt="">
-        </div>
-        <div class="col-4">
-            <img src="https://scontent-syd2-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c2.0.823.823a/s640x640/139964418_455868755429422_5426672429118341455_n.jpg?_nc_ht=scontent-syd2-1.cdninstagram.com&_nc_cat=110&_nc_ohc=qF-xDcxpAmkAX_UPOgQ&tp=1&oh=af627b64d239725922428fe9078299dc&oe=6044FE6E" class="w-100" alt="">
-        </div>
+        @foreach ($user->posts as $post)
+            <div class="col-4 pb-4">
+                <a href="/p/{{ $post->id }}">
+                    <img src="/storage/{{ $post->image }}" class="w-100" alt="">
+                </a>
+            </div>
+        @endforeach
     </div>
 </div>
 @endsection
